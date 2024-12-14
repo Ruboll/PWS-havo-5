@@ -1,5 +1,3 @@
-# Projectnaam
-
 # Perfect Parts - PWS Project
 
 Dit is een project dat je helpt bij het bouwen van je eigen pc. Het biedt handige hulpmiddelen zoals een bottleneck-calculator, aanbevelingen voor componentcombinaties en een vergelijking van CPU's en GPU's op basis van prijs per FPS. Het doel van dit project is om de informatie die vaak verwarrend is voor beginners te verduidelijken.
