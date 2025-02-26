@@ -1,13 +1,77 @@
-<h1>FPD</h1>
-<p>"Frame per dollar" geeft aan hoeveel frames per seconde (FPS) je krijgt voor elke euro of dollar die je uitgeeft aan een videokaart of processor.
-Het laat zien hoe goed een onderdeel presteert voor de prijs die je ervoor betaalt. Hoe hoger dit getal, hoe meer prestaties je krijgt voor je geld.
-Dit helpt je om onderdelen met elkaar te vergelijken en de beste keuze te maken binnen je budget.</p>
-<li>
-    <a href="#" onclick="loadPageContent('pages/1080p.html')">1080p</a>
-  </li>
-<li>
-    <a href="#" onclick="loadPageContent('pages/1080p.html')">1080p</a>
-  </li>
-  <li>
-    <a href="#" onclick="loadPageContent('pages/1080p.html')">1080p</a>
-  </li>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame per Dollar (FPD)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0f0f;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        li {
+            display: inline;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        #content {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #292929;
+            border-radius: 5px;
+            min-height: 150px;
+        }
+    </style>
+</head>
+<body>
+
+        <h1>Frame per Dollar (FPD)</h1>
+        <p>
+            "Frame per dollar" geeft aan hoeveel frames per seconde (FPS) je krijgt voor elke euro of dollar die je uitgeeft aan een videokaart.
+            Het laat zien hoe goed een onderdeel presteert voor de prijs die je ervoor betaalt. Hoe hoger dit getal, hoe meer prestaties je krijgt voor je geld.
+            Dit helpt je om onderdelen met elkaar te vergelijken en de beste keuze te maken binnen je budget.
+        </p>
+        
+        <ul>
+            <li><a href="#" onclick="loadPageContent('pages/1080p.html')">1080p</a></li>
+            <li><a href="#" onclick="loadPageContent('pages/1440p.html')">1440p</a></li>
+            <li><a href="#" onclick="loadPageContent('pages/4k.html')">4K</a></li>
+        </ul>
+</body>
+</html>

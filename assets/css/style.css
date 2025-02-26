@@ -27,13 +27,9 @@ body {
 #header {
   text-align: center;
   padding: 20px;
-  background-color: #1a1a1a;
+  background-color: #202020;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
 h1, h2 {
 margin-block-end: 2rem;
 }
@@ -41,6 +37,18 @@ margin-block-end: 2rem;
 #menu {
   background-color: #333;
   padding: 10px 20px;
+}
+
+h3 {
+padding-block-end: px;
+padding-block-start: 20px;
+margin-block-start: 4px;
+margin-block-end: 0px;
+}
+
+p {
+  margin-block-start: 4px;
+  margin-block-end: 0px;
 }
 
 #menu ul {
@@ -78,7 +86,7 @@ th {
     background-color:  #1a528e;
 }
 
-.container {
+.container{
     max-width: 500px;
     margin: auto;
     padding: 20px;
@@ -92,5 +100,19 @@ select, button {
     margin: 10px 0;
 }
 
+p {
+line-height: 1.4;
+padding-block-end: 4px;
+padding-block-start: 1px;
 
+}
 
+     /* Alleen lijsten met de class 'checklist' krijgen checkmarks */
+.checklist {
+      list-style: none; /* Verwijdert standaard bullet points */
+      padding: 0;
+  }
+  .checklist li::before {
+      content: "✅"; /* Voegt de checkmark toe */
+      margin-inline-start: 8px; /* Geeft ruimte tussen het icoon en de tekst */
+  }
