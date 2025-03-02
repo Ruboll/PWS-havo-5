@@ -229,7 +229,15 @@ table {
     border-collapse: collapse;
 }
 th, td {
-    border: 1px solid #ddd;
+   /* Verberg het menu standaard voordat JavaScript is geladen */
+   #mobile-menu {
+     visibility: hidden; /* Verberg het menu standaard */
+   }
+   
+   /* Zodra JavaScript is geladen, wordt deze klasse toegevoegd */
+   #mobile-menu.js-loaded {
+     visibility: visible;
+   } border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
