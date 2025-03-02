@@ -249,6 +249,7 @@ th {
 #content-neck-container{
   max-inline-size: 500px;
   margin: auto;
+  margin-block: 40px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
