@@ -89,7 +89,13 @@ p {
   color: #00bcd4;
 }
 
-
+/* Styling voor het actieve menu-item */
+#menu a.active {
+  color: #b3d5d8;
+  cursor:default;
+  text-decoration: underline;
+  text-underline-offset: 4px; /* Afstand tussen tekst en onderstreping */
+}
 
 #main-content ul {
   margin-inline-start: 15px;
@@ -145,11 +151,16 @@ padding-block-start: 1px;
 
 /* Link list met SVG-chevron */
 .link-list, .check-list {
+  
   list-style: none; /* Verwijdert standaard bullet points */
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 8px; /* Houdt ruimte tussen items */
+}
+
+ul.link-list, ul.check-list {
+  margin-inline-start: 0px !important;
 }
 
 .link-list li, .check-list li {
