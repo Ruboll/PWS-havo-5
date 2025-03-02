@@ -302,25 +302,19 @@ De website is volledig responsief en biedt een optimale gebruikerservaring op al
 
 Mogelijke verbeteringen voor toekomstige versies:
 
-1. **Verdere Responsieve Verbeteringen**: Meer optimalisaties voor verschillende apparaten.
-   - Specifieke layouts voor tablets
-   - Landscape vs. portrait oriëntatie optimalisaties
-
-2. **CSS Variabelen**: Implementeren van CSS-variabelen voor eenvoudiger theming en onderhoud.
+1. **CSS Variabelen**: Implementeren van CSS-variabelen voor eenvoudiger theming en onderhoud.
    - Kleuren definiëren als variabelen
    - Consistente spacing en typografie via variabelen
 
-3. **Prestatie-optimalisatie**: Verbeteren van laadtijden en algemene prestaties.
+2. **Prestatie-optimalisatie**: Verbeteren van laadtijden en algemene prestaties.
    - Lazy loading van afbeeldingen
    - Code splitting voor JavaScript
 
-4. **Geavanceerdere Calculators**: Uitbreiden van de bottleneck calculator met meer parameters en gedetailleerdere resultaten.
+3. **Geavanceerdere Calculators**: Uitbreiden van de bottleneck calculator met meer parameters en gedetailleerdere resultaten.
    - Rekening houden met specifieke games
    - Meer componenten toevoegen (RAM, opslag)
 
-5. **Lokale Opslag**: Gebruikersvoorkeuren opslaan in localStorage voor een gepersonaliseerde ervaring bij terugkerende bezoeken.
-
-6. **Verbeterde Animaties**: Meer subtiele animaties en overgangen toevoegen voor een nog vloeiendere gebruikerservaring.
+5. **Verbeterde Animaties**: Meer subtiele animaties en overgangen toevoegen voor een nog vloeiendere gebruikerservaring.
    - Page transitions
    - Scroll-gebaseerde animaties
    - Interactieve elementen met hover-effecten
