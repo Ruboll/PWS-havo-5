@@ -52,6 +52,24 @@ h2 {
   padding: 10px 20px;
 }
 
+/* Hamburger menu styling */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 3px;
+}
+
 h3 {
 padding-block-end: 0;
 padding-block-start: 20px;
@@ -72,13 +90,10 @@ p {
   padding: 0;
 }
 
-
-
 #menu li {
   color: #fff;
   font-size: 16px;
 }
-
 
 #menu a {
   color: #fff;
@@ -95,6 +110,104 @@ p {
   cursor:default;
   text-decoration: underline;
   text-underline-offset: 4px; /* Afstand tussen tekst en onderstreping */
+}
+
+/* Media query voor mobiele weergave */
+@media screen and (max-width: 768px) {
+  /* Logo kleiner maken op mobiele schermen */
+  .logo-image {
+    max-width: 300px; /* Kleinere maximale breedte voor het logo */
+    height: auto; /* Behoud de aspect ratio */
+  }
+  
+  .menu-toggle {
+    display: flex;
+    position: relative;
+    z-index: 101; /* Hoger dan het menu zelf */
+  }
+  
+  .navbar__container {
+    position: relative;
+  }
+  
+  /* Animatie voor het menu */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  #menu ul.navbar__menu {
+    display: block; /* Altijd weergeven, maar buiten beeld */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    inline-size: 80%; /* 80% van de schermbreedte */
+    background-color: rgba(63, 60, 60, 0.95);
+    padding: 60px 0 20px;
+    z-index: 100;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transform: translateX(100%); /* Begin buiten beeld */
+    transition: transform 0.3s ease-in-out; /* Soepele overgang */
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #menu ul.navbar__menu.active {
+    transform: translateX(0); /* Schuif in beeld */
+    animation: slideIn 0.3s forwards;
+  }
+  
+  #menu ul.navbar__menu:not(.active) {
+    animation: slideOut 0.3s forwards;
+  }
+  
+  #menu li {
+    inline-size: 100%;
+    text-align: center;
+    padding: 15px 0;
+    margin: 5px 0;
+  }
+  
+  #menu li a {
+    font-size: 1.2rem;
+    display: block;
+    padding: 10px;
+  }
+  
+  #menu li:hover {
+    background-color: #444;
+  }
+  
+  /* Overlay voor de achtergrond wanneer menu open is */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+  }
+  
+  .menu-overlay.active {
+    display: block;
+  }
 }
 
 #main-content ul {
