@@ -72,6 +72,46 @@ function markActiveMenuItem() {
   });
 }
 
+// Functie om het mobiele menu te tonen/verbergen
+function toggleMenu() {
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuOverlay = document.getElementById("menu-overlay");
+  
+  if (mobileMenu) {
+    mobileMenu.classList.toggle("active");
+    
+    // Ook de overlay tonen/verbergen
+    if (menuOverlay) {
+      menuOverlay.classList.toggle("active");
+    }
+    
+    // Voorkom scrollen van de pagina wanneer het menu open is
+    if (mobileMenu.classList.contains("active")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }
+}
+
+// Functie om het menu te sluiten wanneer er buiten het menu wordt geklikt
+function closeMenuOnClickOutside() {
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuToggle = document.querySelector(".menu-toggle");
+  
+  // Voeg een event listener toe aan het document
+  document.addEventListener("click", function(event) {
+    // Controleer of het menu open is
+    if (mobileMenu && mobileMenu.classList.contains("active")) {
+      // Controleer of er buiten het menu en de toggle button is geklikt
+      if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+        // Sluit het menu
+        mobileMenu.classList.remove("active");
+      }
+    }
+  });
+}
+
 // Laad de componenten bij het laden van de pagina
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM geladen, componenten worden nu ingeladen...");
@@ -81,4 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Laad standaardpagina (home)
   loadPageContent("pages/home.html"); // Dit is de standaard pagina die geladen wordt
+  
+  // Initialiseer de functie om het menu te sluiten bij klikken buiten het menu
+  // We wachten even tot het menu geladen is
+  setTimeout(closeMenuOnClickOutside, 500);
 });
