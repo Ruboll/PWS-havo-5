@@ -37,9 +37,15 @@ img.logo-image {
   block-size: 8px;
 }
 
-h1, h2 {
+h1{
 margin-block-end: 2rem;
 }
+
+h2 {
+  margin-block-end: 0.6rem;
+  font-size: 1.3rem;
+}
+
 /* Menu */
 #menu {
   background-color: #333;
@@ -54,8 +60,8 @@ margin-block-end: 0;
 }
 
 p {
-  margin-block-start: 4px;
-  margin-block-end: 0px;
+  margin-block-end: 10px;
+  margin-block-start: 0;
 }
 
 #menu ul {
@@ -66,10 +72,13 @@ p {
   padding: 0;
 }
 
+
+
 #menu li {
   color: #fff;
   font-size: 16px;
 }
+
 
 #menu a {
   color: #fff;
@@ -79,6 +88,16 @@ p {
 #menu a:hover {
   color: #00bcd4;
 }
+
+
+
+#main-content ul {
+  margin-inline-start: 15px;
+  margin-block-end: 10px;
+  padding: 0;
+  line-height: 1.4;
+}
+
 
 table {
   inline-size: 100%;
@@ -124,18 +143,8 @@ padding-block-start: 1px;
 
 }
 
-     /* Alleen lijsten met de class 'checklist' krijgen checkmarks */
-.checklist {
-      list-style: none; /* Verwijdert standaard bullet points */
-      padding: 0;
-  }
-  .checklist li::before {
-      content: "✅"; /* Voegt de checkmark toe */
-      margin-inline-start: 8px; /* Geeft ruimte tussen het icoon en de tekst */
-  }
-
 /* Link list met SVG-chevron */
-.link-list {
+.link-list, .check-list {
   list-style: none; /* Verwijdert standaard bullet points */
   padding: 0;
   display: flex;
@@ -143,12 +152,21 @@ padding-block-start: 1px;
   gap: 8px; /* Houdt ruimte tussen items */
 }
 
-.link-list li {
+.link-list li, .check-list li {
   display: flex;
   align-items: center;
   gap: 5px; /* Ruimte tussen chevron en link */
   padding-block: 0px;
 }
+
+  /* Alleen lijsten met de class 'check-list' krijgen checkmarks */
+
+.check-list li::before {
+  content: "✅"; /* Voegt de checkmark toe */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 
 .link-list li::before {
   content: "";
