@@ -8,7 +8,8 @@
 5. [JavaScript Functionaliteit](#javascript-functionaliteit)
 6. [CSS Styling](#css-styling)
 7. [Interactieve Tools](#interactieve-tools)
-8. [Toekomstige Verbeteringen](#toekomstige-verbeteringen)
+8. [Responsief Design](#responsief-design)
+9. [Toekomstige Verbeteringen](#toekomstige-verbeteringen)
 
 ## Projectoverzicht
 
@@ -32,7 +33,8 @@ PWS-havo-5/
 │   │   └── style.css          # Hoofdstijlbestand
 │   │
 │   ├── images/                # Afbeeldingen
-│   │   └── logo.png           # Website logo
+│   │   ├── logo-pp.png        # Website logo
+│   │   └── hero-bg.png        # Hero achtergrondafbeelding
 │   │
 │   └── js/                    # JavaScript-bestanden
 │       ├── bottleneckcalc.js  # Bottleneck calculator functionaliteit
@@ -66,19 +68,21 @@ De website is gebouwd volgens een Single Page Application (SPA) principe, waarbi
 
 4. **Moderne CSS**: De styling gebruikt logische eigenschappen (block-start, inline-end, etc.) voor betere ondersteuning van verschillende schrijfrichtingen en talen.
 
+5. **Volledig Responsief**: De website is geoptimaliseerd voor alle schermformaten, van desktop tot mobiel, met een speciaal ontworpen mobiel menu.
+
 ## Componenten
 
 ### Header, Menu en Footer
 Deze componenten worden bij het laden van de website automatisch ingevoegd in de daarvoor bestemde containers in index.html. Dit zorgt voor consistentie in de gebruikersinterface en vermindert codeduplicatie.
 
 - **Header**: Bevat de titel en eventuele subtitels van de website
-- **Menu**: Bevat navigatielinks naar alle pagina's van de website
+- **Menu**: Bevat navigatielinks naar alle pagina's van de website, met een speciale mobiele versie die vanaf de rechterkant inschuift
 - **Footer**: Bevat copyright informatie en eventuele extra links
 
 ### Content Pages
 Alle inhoudspagina's bevinden zich in de `pages/` map en worden dynamisch geladen in de `main-content` container wanneer een gebruiker op een menu-item klikt. Elke pagina heeft een specifiek doel:
 
-- **Home**: Introductie van de website en het project
+- **Home**: Introductie van de website met een opvallende hero-sectie en overzicht van de belangrijkste functies
 - **About Us**: Informatie over het team en het doel van het project
 - **FPE (Frame Per Euro)**: Uitleg over het concept en links naar vergelijkingspagina's
 - **1080p/1440p/4K**: Tabellen met vergelijkingen van grafische kaarten bij verschillende resoluties
@@ -90,7 +94,7 @@ Alle inhoudspagina's bevinden zich in de `pages/` map en worden dynamisch gelade
 ## JavaScript Functionaliteit
 
 ### loadcomponents.js
-Dit is het hart van de website-architectuur. Het bevat twee hoofdfuncties:
+Dit is het hart van de website-architectuur. Het bevat de volgende hoofdfuncties:
 
 1. **loadComponent()**: Laadt herbruikbare componenten (header, menu, footer) via fetch API
    ```javascript
@@ -101,6 +105,9 @@ Dit is het hart van de website-architectuur. Het bevat twee hoofdfuncties:
          .then((response) => response.text())
          .then((data) => {
            element.innerHTML = data;
+           if (id === "menu") {
+             markActiveMenuItem();
+           }
          });
      }
    }
@@ -115,12 +122,67 @@ Dit is het hart van de website-architectuur. Het bevat twee hoofdfuncties:
          .then((response) => response.text())
          .then((data) => {
            mainContent.innerHTML = data;
+           currentPage = file;
+           markActiveMenuItem();
          });
      }
    }
    ```
 
-3. **DOMContentLoaded Event**: Zorgt ervoor dat de componenten en de standaard homepagina worden geladen wanneer de website wordt geopend
+3. **toggleMenu()**: Beheert het openen en sluiten van het mobiele menu
+   ```javascript
+   function toggleMenu() {
+     const mobileMenu = document.getElementById("mobile-menu");
+     const menuOverlay = document.getElementById("menu-overlay");
+     
+     if (mobileMenu) {
+       mobileMenu.classList.toggle("active");
+       
+       if (menuOverlay) {
+         menuOverlay.classList.toggle("active");
+       }
+       
+       if (mobileMenu.classList.contains("active")) {
+         document.body.style.overflow = "hidden";
+       } else {
+         document.body.style.overflow = "";
+       }
+     }
+   }
+   ```
+
+4. **closeMenuOnClickOutside()**: Sluit het menu wanneer er buiten het menu wordt geklikt
+   ```javascript
+   function closeMenuOnClickOutside() {
+     document.addEventListener("click", function(event) {
+       const mobileMenu = document.getElementById("mobile-menu");
+       const menuToggle = document.querySelector(".menu-toggle");
+       
+       if (mobileMenu && mobileMenu.classList.contains("active")) {
+         if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+           mobileMenu.classList.remove("active");
+           document.body.style.overflow = "";
+         }
+       }
+     });
+   }
+   ```
+
+5. **markActiveMenuItem()**: Markeert het actieve menu-item op basis van de huidige pagina
+   ```javascript
+   function markActiveMenuItem() {
+     const menuLinks = document.querySelectorAll("#menu a");
+     menuLinks.forEach(link => {
+       link.classList.remove("active");
+       const onclickAttr = link.getAttribute("onclick");
+       if (onclickAttr && onclickAttr.includes(currentPage)) {
+         link.classList.add("active");
+       }
+     });
+   }
+   ```
+
+6. **DOMContentLoaded Event**: Zorgt ervoor dat de componenten en de standaard homepagina worden geladen wanneer de website wordt geopend
 
 ### bottleneckcalc.js
 Implementeert de bottleneck calculator die gebruikers helpt om te bepalen of hun CPU en GPU goed op elkaar zijn afgestemd. De calculator gebruikt een eenvoudig algoritme dat het verschil tussen CPU- en GPU-scores berekent om potentiële bottlenecks te identificeren.
@@ -161,13 +223,29 @@ De website gebruikt een moderne CSS-aanpak met:
    - Achtergrond: Zwart (#000)
    - Tekst: Wit (#fff)
    - Accentkleur: Lichtblauw (#00bcd4)
+   - Secundaire accentkleur: Paars (#9eb5ef)
    - Secundaire achtergrond: Donkergrijs (#1a1a1a, #202020, #333)
 
 4. **Content Containers**: Speciale containers voor verschillende soorten inhoud:
    - `#content-container`: Algemene container voor pagina-inhoud
-   - `#content-neck-container`: Specifieke container voor de bottleneck calculator
+   - `.feature-section`: Container voor feature-lijsten met opvallende styling
+   - `.quote-box`: Speciale container voor quotes
+   - `.hero-section`: Opvallende header-sectie op de homepage
 
 5. **Styling voor lijsten**: Speciale styling voor checklists en linklijsten met SVG-chevrons.
+
+6. **Animaties en Transities**: Soepele animaties voor het mobiele menu en interactieve elementen:
+   ```css
+   @keyframes slideIn {
+     from { transform: translateX(100%); }
+     to { transform: translateX(0); }
+   }
+   
+   @keyframes slideOut {
+     from { transform: translateX(0); }
+     to { transform: translateX(100%); }
+   }
+   ```
 
 ## Interactieve Tools
 
@@ -188,30 +266,72 @@ De website bevat verschillende interactieve tools om gebruikers te helpen bij he
    - Vergelijkt prijs, prijs per FPS en gemiddelde FPS
    - Beschikbaar voor drie verschillende resoluties
 
+## Responsief Design
+
+De website is volledig responsief en biedt een optimale gebruikerservaring op alle apparaten, van desktop tot mobiel:
+
+1. **Mobiel Menu**:
+   - Hamburger menu-icoon op kleine schermen
+   - Menu schuift in vanaf de rechterkant (80% van de schermbreedte)
+   - Overlay die de rest van de pagina verduistert
+   - Animaties voor soepel openen en sluiten
+   - Sluit automatisch bij klikken buiten het menu
+
+2. **Responsieve Hero-sectie**:
+   - Past zich aan aan verschillende schermformaten
+   - Knoppen worden verticaal gestapeld op mobiel
+   - Tekstgrootte wordt aangepast voor leesbaarheid
+
+3. **Media Queries**:
+   ```css
+   @media screen and (max-width: 768px) {
+     /* Mobiele styling */
+     .logo-image {
+       max-width: 180px;
+     }
+     
+     #menu ul.navbar__menu {
+       width: 80%;
+       position: fixed;
+       /* Meer styling voor mobiel menu */
+     }
+     
+     .hero-section {
+       height: 350px;
+     }
+     
+     /* Meer responsieve aanpassingen */
+   }
+   ```
+
+4. **Aanpassingen voor Touch-apparaten**:
+   - Grotere klikbare gebieden voor menu-items
+   - Duidelijke visuele feedback bij interactie
+   - Verbeterde leesbaarheid met grotere lettertypen
+
 ## Toekomstige Verbeteringen
 
 Mogelijke verbeteringen voor toekomstige versies:
 
-1. **Responsive Design Verbetering**: Optimalisatie voor mobiele apparaten en tablets.
-   - Media queries toevoegen voor verschillende schermformaten
-   - Aanpasbare menu's voor kleinere schermen
+1. **Verdere Responsieve Verbeteringen**: Meer optimalisaties voor verschillende apparaten.
+   - Specifieke layouts voor tablets
+   - Landscape vs. portrait oriëntatie optimalisaties
 
 2. **CSS Variabelen**: Implementeren van CSS-variabelen voor eenvoudiger theming en onderhoud.
    - Kleuren definiëren als variabelen
    - Consistente spacing en typografie via variabelen
 
-3. **Uitgebreidere Component-bibliotheek**: Meer herbruikbare componenten toevoegen.
-   - Kaartcomponenten voor productweergave
-   - Tabcomponenten voor het organiseren van inhoud
+3. **Prestatie-optimalisatie**: Verbeteren van laadtijden en algemene prestaties.
+   - Lazy loading van afbeeldingen
+   - Code splitting voor JavaScript
 
 4. **Geavanceerdere Calculators**: Uitbreiden van de bottleneck calculator met meer parameters en gedetailleerdere resultaten.
    - Rekening houden met specifieke games
    - Meer componenten toevoegen (RAM, opslag)
 
 5. **Lokale Opslag**: Gebruikersvoorkeuren opslaan in localStorage voor een gepersonaliseerde ervaring bij terugkerende bezoeken.
-   - Opslaan van eerder gekozen componenten
-   - Onthouden van gebruikersvoorkeuren
 
----
-
-Dit document is bedoeld als gids voor ontwikkelaars die aan dit project werken en om inzicht te geven in de architectuur en ontwerpbeslissingen die zijn gemaakt tijdens de ontwikkeling van de Perfect Parts website.
+6. **Verbeterde Animaties**: Meer subtiele animaties en overgangen toevoegen voor een nog vloeiendere gebruikerservaring.
+   - Page transitions
+   - Scroll-gebaseerde animaties
+   - Interactieve elementen met hover-effecten
