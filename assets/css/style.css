@@ -133,3 +133,42 @@ padding-block-start: 1px;
       content: "✅"; /* Voegt de checkmark toe */
       margin-inline-start: 8px; /* Geeft ruimte tussen het icoon en de tekst */
   }
+
+/* Link list met SVG-chevron */
+.link-list {
+  list-style: none; /* Verwijdert standaard bullet points */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Houdt ruimte tussen items */
+}
+
+.link-list li {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Ruimte tussen chevron en link */
+  padding-block: 0px;
+}
+
+.link-list li::before {
+  content: "";
+  display: inline-block;
+  inline-size: 1.4rem; /* Breedte van het chevron-icoon */
+  block-size: 1.4rem; /* Hoogte van het chevron-icoon */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9.29 6.71a1 1 0 0 1 1.41 0L15.29 11.3a1 1 0 0 1 0 1.41L10.7 17.3a1 1 0 0 1-1.41-1.41L13.17 12l-4.58-4.59a1 1 0 0 1 0-1.41z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.link-list a {
+  color: #fff; /* Witte tekst */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.link-list a:hover {
+  color: #00bcd4; /* Hover-kleur zoals in het menu */
+  text-decoration: underline;
+}
