@@ -1,8 +1,8 @@
 
 <div id="content-neck-container">
     <h2>PC Advies Vragenlijst</h2>
-    <p>Vul de onderstaande vragenlijst in en ontvang een gepersonaliseerd advies voor jouw ideale gaming PC. We houden rekening met je budget, prestaties en voorkeuren.</p>
-    
+    <p>Vul de onderstaande vragenlijst in en ontvang een gepersonaliseerd advies voor jouw ideale gaming PC.</p>
+  
     <form id="vragenlijst">
         <label for="budget">Wat is je budget?</label>
         <select id="budget">
@@ -10,7 +10,7 @@
             <option value="1000">€1000</option>
             <option value="1250">€1250</option>
             <option value="1500">€1500</option>
-            <option value="2000+">€2000 of meer</option>
+            <option value="2000">€2000 of meer</option>
         </select>
 
         <label for="aesthetics">Hoe belangrijk vind je het uiterlijk van je PC?</label>
@@ -20,18 +20,18 @@
             <option value="style">Ik heb graag een mooie PC.</option>
         </select>
 
-        <label for="competitive">Speel je graag competitieve games, zoals Call Of Duty Warzone, Valorant & Fortnite?</label>
+        <label for="competitive">Speel je graag competitieve games?</label>
         <select id="competitive">
             <option value="yes">Ja, heel erg.</option>
             <option value="sometimes">Soms.</option>
             <option value="no">Nee, niet echt.</option>
         </select>
 
-        <label for="storage">Hoeveel opslag zou je willen hebben in je PC?</label>
+        <label for="storage">Hoeveel opslag heb je nodig?</label>
         <select id="storage">
-            <option value="500GB">500 gigabyte</option>
-            <option value="1TB">1 terabyte</option>
-            <option value="2TB">2 terabyte</option>
+            <option value="500GB">500GB</option>
+            <option value="1TB">1TB</option>
+            <option value="2TB">2TB</option>
         </select>
 
         <label for="ram">Hoeveel RAM heb je nodig?</label>
@@ -41,14 +41,14 @@
             <option value="32GB">32GB</option>
         </select>
 
-        <label for="resolution">Hoe belangrijk vind jij jouw resolutie?</label>
+        <label for="resolution">Hoe belangrijk is resolutie?</label>
         <select id="resolution">
-            <option value="4K">Ja, ik wil graag op 4K resolutie spelen.</option>
-            <option value="balanced">Ik hoef geen 4K, maar wil ook geen slechte resolutie.</option>
+            <option value="4K">Ik wil op 4K resolutie spelen.</option>
+            <option value="balanced">Ik wil een goede balans tussen resolutie en prestaties.</option>
             <option value="neutral">Het maakt mij niet uit.</option>
         </select>
 
-        <button id="adviesKnop" type="button">Advies opstellen</button>
+        <button class="form-button" id="adviesKnop" type="button">Advies opstellen</button>
     </form>
 
     <div id="resultaat-container">
@@ -57,6 +57,3 @@
         <ul id="onderdelen-lijst"></ul>
     </div>
 </div>
-    
-
-<script src="./assets/js/vragenlijst.js"></script>
