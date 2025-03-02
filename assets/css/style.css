@@ -101,7 +101,7 @@ p {
 }
 
 #menu a:hover {
-  color: #00bcd4;
+  color: #2b9bef;
 }
 
 /* Styling voor het actieve menu-item */
@@ -132,7 +132,7 @@ p {
   
   /* Animatie voor het menu */
   @keyframes slideIn {
-    from {
+    form {
       transform: translateX(100%);
     }
     to {
@@ -141,7 +141,7 @@ p {
   }
   
   @keyframes slideOut {
-    from {
+    form {
       transform: translateX(0);
     }
     to {
@@ -242,7 +242,7 @@ th, td {
     text-align: left;
 }
 th {
-    background-color:  #1a528e;
+    background-color:  #2b9bef;
 }
 
 #content-container{
@@ -326,7 +326,7 @@ ul.link-list, ul.check-list {
 }
 
 .link-list a:hover {
-  color: #00bcd4; /* Hover-kleur zoals in het menu */
+  color: #2b9bef; /* Hover-kleur zoals in het menu */
   text-decoration: underline;
 }
 
@@ -342,7 +342,7 @@ ul.link-list, ul.check-list {
   margin: 2rem 0;
   padding: 1.5rem;
   background-color: rgba(50, 50, 50, 0.5);
-  border-left: 4px solid #00bcd4;
+  border-left: 4px solid #2b9bef;
 }
 
 .feature-section h2 {
@@ -362,7 +362,7 @@ ul.link-list, ul.check-list {
   font-style: italic;
   text-align: center;
   font-size: 1.2rem;
-  color: #00bcd4 ;
+  color: #2b9bef ;
 }
 
 /* Verbeterde stijl voor de check-list */
@@ -376,7 +376,7 @@ ul.link-list, ul.check-list {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #00bcd4;
+  color: #2b9bef;
   font-weight: bold;
 }
 
@@ -434,14 +434,14 @@ ul.link-list, ul.check-list {
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.hero-buttons {
+.hero-buttons, .form-button {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-top: 30px;
 }
 
-.hero-button {
+.hero-button, .form-button {
   display: inline-block;
   padding: 12px 24px;
   border-radius: 4px;
@@ -452,24 +452,24 @@ ul.link-list, ul.check-list {
   text-decoration: none;
 }
 
-.hero-button.primary {
-  background-color: #00bcd4;
+.hero-button.primary, .form-button {
+  background-color: #2b9bef;
   color: #000;
 }
 
 .hero-button.secondary {
   background-color: transparent;
   color: #fff;
-  border: 2px solid #00bcd4;
+  border: 2px solid #2b9bef;
 }
 
-.hero-button:hover {
+.hero-button:hover, .form-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.hero-button.primary:hover {
-  background-color: #00a0b7;
+.hero-button.primary:hover, .form-button:hover {
+  background-color: #2b9bef;
 }
 
 .hero-button.secondary:hover {
@@ -506,3 +506,4 @@ ul.link-list, ul.check-list {
   margin-bottom: 2rem;
   color: #f0f0f0;
 }
+
