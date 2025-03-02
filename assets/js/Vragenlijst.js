@@ -1,3 +1,16 @@
+document.addEventListener("DOMContentLoaded", function () {
+    let knop = document.getElementById("adviesKnop"); // Zorg dat deze ID correct is!
+    if (knop) {
+        knop.addEventListener("click", toonResultaat);
+    } else {
+        console.error("Button met id 'adviesKnop' niet gevonden!");
+    }
+    console.log("Script is geladen!");
+console.log("Knop gevonden:", document.getElementById("adviesKnop"));
+});
+
+
+
 function toonResultaat() {
     let budget = document.getElementById("budget").value;
     let aesthetics = document.getElementById("aesthetics").value;

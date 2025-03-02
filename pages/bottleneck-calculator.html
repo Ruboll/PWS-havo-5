@@ -1,0 +1,46 @@
+<div id="content-neck-container">
+    <h2>PC Bottleneck Calculator</h2>
+    <p><strong>Wat is een bottleneck?</strong> Een bottleneck ontstaat wanneer de prestaties van je CPU en GPU niet goed op elkaar zijn afgestemd.</p>
+    
+    <label for="cpu">Kies een CPU:</label>
+    <select id="cpu">
+        <option value="100">Intel i9-13900K</option>
+        <option value="90">AMD Ryzen 9 7950X</option>
+        <option value="80">Intel i7-12700K</option>
+        <option value="75">AMD Ryzen 7 7700X</option>
+        <option value="70">Intel i5-13600K</option>
+        <option value="60">AMD Ryzen 5 5600X</option>
+        <option value="55">Intel i5-12400F</option>
+        <option value="50">Intel i5-11400F</option>
+        <option value="40">AMD Ryzen 3 3300X</option>
+        <option value="35">Intel i3-10100</option>
+    </select>
+
+    <label for="gpu">Kies een GPU:</label>
+    <select id="gpu">
+        <option value="100">NVIDIA RTX 4090</option>
+        <option value="95">AMD RX 7900 XTX</option>
+        <option value="90">NVIDIA RTX 4080</option>
+        <option value="85">NVIDIA RTX 4070 Ti</option>
+        <option value="80">NVIDIA RTX 3080</option>
+        <option value="75">AMD RX 6800 XT</option>
+        <option value="70">NVIDIA RTX 3070</option>
+        <option value="65">AMD RX 6700 XT</option>
+        <option value="60">NVIDIA RTX 3060 Ti</option>
+        <option value="55">AMD RX 6600 XT</option>
+        <option value="50">NVIDIA GTX 1660</option>
+        <option value="45">AMD RX 580</option>
+        <option value="40">NVIDIA GTX 1050 Ti</option>
+        <option value="35">Intel Arc A750</option>
+    </select>
+    
+    <button onclick="calculateBottleneck()">Bereken Bottleneck</button>
+    <div id="resultaat-container">
+        <p id="resultaat">Resultaat wordt hier weergegeven...</p>
+    </div>
+</div>
+
+
+
+
+

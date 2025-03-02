@@ -6,7 +6,7 @@ body {
   color: #fff; /* Witte tekstkleur */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Zorgt ervoor dat het body-element altijd minstens de hoogte van het scherm heeft */
+  min-block-size: 100vh; /* Zorgt ervoor dat het body-element altijd minstens de hoogte van het scherm heeft */
 }
 
 /* Main content */
@@ -15,24 +15,37 @@ body {
   padding: 1rem;
 }
 
+img.logo-image {
+  inline-size: 500px; /* 500 */
+  block-size: auto; /* 300 */
+  display: block; /* 10 */
+  margin-block-end: 20px; /* 0 */
+}
+
 /* Footer */
 #footer {
   text-align: center;
   padding: 10px;
   background-color: #1a1a1a;
-  margin-top: auto; /* Zorgt ervoor dat de footer altijd onderaan komt */
+  margin-block-start: auto; /* Zorgt ervoor dat de footer altijd onderaan komt */
 }
 
 /* Header */
 #header {
   text-align: center;
-  padding: 20px;
   background-color: #202020;
+  block-size: 8px;
 }
 
-h1, h2 {
+h1{
 margin-block-end: 2rem;
 }
+
+h2 {
+  margin-block-end: 0.6rem;
+  font-size: 1.3rem;
+}
+
 /* Menu */
 #menu {
   background-color: #333;
@@ -40,15 +53,15 @@ margin-block-end: 2rem;
 }
 
 h3 {
-padding-block-end: px;
+padding-block-end: 0;
 padding-block-start: 20px;
 margin-block-start: 4px;
-margin-block-end: 0px;
+margin-block-end: 0;
 }
 
 p {
-  margin-block-start: 4px;
-  margin-block-end: 0px;
+  margin-block-end: 10px;
+  margin-block-start: 0;
 }
 
 #menu ul {
@@ -59,10 +72,13 @@ p {
   padding: 0;
 }
 
+
+
 #menu li {
   color: #fff;
   font-size: 16px;
 }
+
 
 #menu a {
   color: #fff;
@@ -73,8 +89,24 @@ p {
   color: #00bcd4;
 }
 
+/* Styling voor het actieve menu-item */
+#menu a.active {
+  color: #b3d5d8;
+  cursor:default;
+  text-decoration: underline;
+  text-underline-offset: 4px; /* Afstand tussen tekst en onderstreping */
+}
+
+#main-content ul {
+  margin-inline-start: 15px;
+  margin-block-end: 10px;
+  padding: 0;
+  line-height: 1.4;
+}
+
+
 table {
-    width: 100%;
+  inline-size: 100%;
     border-collapse: collapse;
 }
 th, td {
@@ -86,16 +118,26 @@ th {
     background-color:  #1a528e;
 }
 
-.container{
-    max-width: 500px;
+#content-container{
+    max-inline-size: 1200px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
+
+
+#content-neck-container{
+  max-inline-size: 500px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
 select, button {
-    width: 100%;
+    inline-size: 100%;
     padding: 10px;
     margin: 10px 0;
 }
@@ -107,12 +149,55 @@ padding-block-start: 1px;
 
 }
 
-     /* Alleen lijsten met de class 'checklist' krijgen checkmarks */
-.checklist {
-      list-style: none; /* Verwijdert standaard bullet points */
-      padding: 0;
-  }
-  .checklist li::before {
-      content: "✅"; /* Voegt de checkmark toe */
-      margin-inline-start: 8px; /* Geeft ruimte tussen het icoon en de tekst */
-  }
+/* Link list met SVG-chevron */
+.link-list, .check-list {
+  
+  list-style: none; /* Verwijdert standaard bullet points */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Houdt ruimte tussen items */
+}
+
+ul.link-list, ul.check-list {
+  margin-inline-start: 0px !important;
+}
+
+.link-list li, .check-list li {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Ruimte tussen chevron en link */
+  padding-block: 0px;
+}
+
+  /* Alleen lijsten met de class 'check-list' krijgen checkmarks */
+
+.check-list li::before {
+  content: "✅"; /* Voegt de checkmark toe */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.link-list li::before {
+  content: "";
+  display: inline-block;
+  inline-size: 1.4rem; /* Breedte van het chevron-icoon */
+  block-size: 1.4rem; /* Hoogte van het chevron-icoon */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9.29 6.71a1 1 0 0 1 1.41 0L15.29 11.3a1 1 0 0 1 0 1.41L10.7 17.3a1 1 0 0 1-1.41-1.41L13.17 12l-4.58-4.59a1 1 0 0 1 0-1.41z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.link-list a {
+  color: #fff; /* Witte tekst */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.link-list a:hover {
+  color: #00bcd4; /* Hover-kleur zoals in het menu */
+  text-decoration: underline;
+}
