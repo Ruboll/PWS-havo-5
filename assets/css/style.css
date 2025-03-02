@@ -6,7 +6,7 @@ body {
   color: #fff; /* Witte tekstkleur */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Zorgt ervoor dat het body-element altijd minstens de hoogte van het scherm heeft */
+  min-block-size: 100vh; /* Zorgt ervoor dat het body-element altijd minstens de hoogte van het scherm heeft */
 }
 
 /* Main content */
@@ -16,8 +16,8 @@ body {
 }
 
 img.logo-image {
-  width: 500px; /* 500 */
-  height: auto; /* 300 */
+  inline-size: 500px; /* 500 */
+  block-size: auto; /* 300 */
   display: block; /* 10 */
   margin-block-end: 20px; /* 0 */
 }
@@ -33,8 +33,8 @@ img.logo-image {
 /* Header */
 #header {
   text-align: center;
-  padding: 20px;
   background-color: #202020;
+  block-size: 8px;
 }
 
 h1, h2 {
@@ -81,7 +81,7 @@ p {
 }
 
 table {
-    width: 100%;
+  inline-size: 100%;
     border-collapse: collapse;
 }
 th, td {
@@ -94,7 +94,7 @@ th {
 }
 
 #content-container{
-    max-width: 1200px;
+    max-inline-size: 1200px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -103,7 +103,7 @@ th {
 
 
 #content-neck-container{
-  max-width: 500px;
+  max-inline-size: 500px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -112,7 +112,7 @@ th {
 }
 
 select, button {
-    width: 100%;
+    inline-size: 100%;
     padding: 10px;
     margin: 10px 0;
 }
