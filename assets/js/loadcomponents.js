@@ -112,6 +112,35 @@ function closeMenuOnClickOutside() {
   });
 }
 
+// Functie om het menu te sluiten en dan een pagina te laden
+function closeMenuAndLoadPage(file) {
+  // Haal referenties naar menu-elementen
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuOverlay = document.getElementById("menu-overlay");
+  
+  // Controleer of het menu open is
+  if (mobileMenu && mobileMenu.classList.contains("active")) {
+    // Verwijder de active klasse (sluit het menu)
+    mobileMenu.classList.remove("active");
+    
+    // Verwijder ook de active klasse van de overlay
+    if (menuOverlay) {
+      menuOverlay.classList.remove("active");
+    }
+    
+    // Herstel scrollen
+    document.body.style.overflow = "";
+    
+    // Wacht tot de animatie is voltooid voordat de pagina wordt geladen
+    setTimeout(() => {
+      loadPageContent(file);
+    }, 300); // 300ms is de duur van de animatie in CSS
+  } else {
+    // Als het menu al gesloten is, laad de pagina direct
+    loadPageContent(file);
+  }
+}
+
 // Laad de componenten bij het laden van de pagina
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM geladen, componenten worden nu ingeladen...");
@@ -124,5 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Initialiseer de functie om het menu te sluiten bij klikken buiten het menu
   // We wachten even tot het menu geladen is
-  setTimeout(closeMenuOnClickOutside, 500);
+  setTimeout(() => {
+    closeMenuOnClickOutside();
+    
+    // Maak het menu zichtbaar nadat JavaScript is geladen
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (mobileMenu) {
+      mobileMenu.classList.add("js-loaded");
+    }
+  }, 500);
 });

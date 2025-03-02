@@ -149,6 +149,16 @@ p {
     }
   }
   
+  /* Verberg het menu standaard voordat JavaScript is geladen */
+  #mobile-menu {
+    visibility: hidden; /* Verberg het menu standaard */
+  }
+  
+  /* Zodra JavaScript is geladen, wordt deze klasse toegevoegd */
+  #mobile-menu.js-loaded {
+    visibility: visible;
+  }
+  
   #menu ul.navbar__menu {
     display: block; /* Altijd weergeven, maar buiten beeld */
     position: fixed;
@@ -170,10 +180,6 @@ p {
   #menu ul.navbar__menu.active {
     transform: translateX(0); /* Schuif in beeld */
     animation: slideIn 0.3s forwards;
-  }
-  
-  #menu ul.navbar__menu:not(.active) {
-    animation: slideOut 0.3s forwards;
   }
   
   #menu li {
