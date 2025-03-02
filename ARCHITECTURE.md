@@ -94,95 +94,84 @@ Alle inhoudspagina's bevinden zich in de `pages/` map en worden dynamisch gelade
 ## JavaScript Functionaliteit
 
 ### loadcomponents.js
-Dit is het hart van de website-architectuur. Het bevat de volgende hoofdfuncties:
+Dit is het hart van de website-architectuur. Het script is nu georganiseerd in functionele modules:
 
-1. **loadComponent()**: Laadt herbruikbare componenten (header, menu, footer) via fetch API
-   ```javascript
-   function loadComponent(id, file) {
-     const element = document.getElementById(id);
-     if (element) {
-       fetch(file)
-         .then((response) => response.text())
-         .then((data) => {
-           element.innerHTML = data;
-           if (id === "menu") {
-             markActiveMenuItem();
-           }
-         });
-     }
-   }
-   ```
+#### 1. Titel en URL Management
+Zorgt voor consistente paginatitels in browser tabs:
+- `updatePageTitle()`: Stelt de juiste titel in op basis van de huidige URL
+- `pageTitles`: Map van pagina's naar beschrijvende, SEO-vriendelijke titels
 
-2. **loadPageContent()**: Laadt dynamisch de inhoud van pagina's wanneer gebruikers navigeren
-   ```javascript
-   function loadPageContent(file) {
-     const mainContent = document.getElementById("main-content");
-     if (mainContent) {
-       fetch(file)
-         .then((response) => response.text())
-         .then((data) => {
-           mainContent.innerHTML = data;
-           currentPage = file;
-           markActiveMenuItem();
-         });
-     }
-   }
-   ```
+#### 2. Component Laden Functies
+Laadt herbruikbare componenten en pagina-inhoud dynamisch:
+```javascript
+function loadComponent(id, file) {
+  const element = document.getElementById(id);
+  if (element) {
+    fetch(file)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Kan ${file} niet laden: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then((data) => {
+        element.innerHTML = data;
+        if (id === "menu") {
+          markActiveMenuItem();
+        }
+      })
+      .catch((error) => {
+        console.error(`Fout bij het laden van ${file}:`, error);
+        element.innerHTML = `<p>Fout bij het laden van ${file}</p>`;
+      });
+  }
+}
+```
 
-3. **toggleMenu()**: Beheert het openen en sluiten van het mobiele menu
-   ```javascript
-   function toggleMenu() {
-     const mobileMenu = document.getElementById("mobile-menu");
-     const menuOverlay = document.getElementById("menu-overlay");
-     
-     if (mobileMenu) {
-       mobileMenu.classList.toggle("active");
-       
-       if (menuOverlay) {
-         menuOverlay.classList.toggle("active");
-       }
-       
-       if (mobileMenu.classList.contains("active")) {
-         document.body.style.overflow = "hidden";
-       } else {
-         document.body.style.overflow = "";
-       }
-     }
-   }
-   ```
+```javascript
+function loadPageContent(file) {
+  const mainContent = document.getElementById("main-content");
+  if (mainContent) {
+    fetch(file)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Kan ${file} niet laden: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then((data) => {
+        mainContent.innerHTML = data;
+        currentPage = file;
+        markActiveMenuItem();
+        
+        // Update history en titel indien nodig
+        if (!window.suppressHistoryUpdate) {
+          // ... code voor history update ...
+          updatePageTitle();
+        }
+        
+        window.suppressHistoryUpdate = false;
+      });
+  }
+}
+```
 
-4. **closeMenuOnClickOutside()**: Sluit het menu wanneer er buiten het menu wordt geklikt
-   ```javascript
-   function closeMenuOnClickOutside() {
-     document.addEventListener("click", function(event) {
-       const mobileMenu = document.getElementById("mobile-menu");
-       const menuToggle = document.querySelector(".menu-toggle");
-       
-       if (mobileMenu && mobileMenu.classList.contains("active")) {
-         if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-           mobileMenu.classList.remove("active");
-           document.body.style.overflow = "";
-         }
-       }
-     });
-   }
-   ```
+#### 3. Menu Functies
+Beheert het navigatiemenu en zorgt voor een gebruiksvriendelijke ervaring:
+- `toggleMenu()`: Schakelt het mobiele menu tussen open en gesloten
+- `closeMenuAndLoadPage()`: Sluit het menu en laadt dan een nieuwe pagina
+- `markActiveMenuItem()`: Markeert het huidige menu-item op basis van de geladen pagina
+- `closeMenuOnClickOutside()`: Sluit het menu wanneer er buiten het menu wordt geklikt
 
-5. **markActiveMenuItem()**: Markeert het actieve menu-item op basis van de huidige pagina
-   ```javascript
-   function markActiveMenuItem() {
-     const menuLinks = document.querySelectorAll("#menu a");
-     menuLinks.forEach(link => {
-       link.classList.remove("active");
-       const onclickAttr = link.getAttribute("onclick");
-       if (onclickAttr && onclickAttr.includes(currentPage)) {
-         link.classList.add("active");
-       }
-     });
-   }
-   ```
+#### 4. Navigatie Functies
+Zorgt voor naadloze navigatie en URL-parsing:
+- `loadPageFromUrl()`: Bepaalt welke pagina moet worden geladen op basis van de URL-parameter
 
-6. **DOMContentLoaded Event**: Zorgt ervoor dat de componenten en de standaard homepagina worden geladen wanneer de website wordt geopend
+#### 5. Browser History API Implementatie
+Implementeert de History API voor een betere browser-navigatie ervaring:
+- Gebruikt `history.pushState()` om browsergeschiedenis bij te werken bij navigatie
+- Implementeert een `popstate` event listener om te reageren op browser terugknop
+- Voorkomt dubbele history entries door een flag-systeem (`suppressHistoryUpdate`)
 
 ### bottleneckcalc.js
 Implementeert de bottleneck calculator die gebruikers helpt om te bepalen of hun CPU en GPU goed op elkaar zijn afgestemd. De calculator gebruikt een eenvoudig algoritme dat het verschil tussen CPU- en GPU-scores berekent om potentiële bottlenecks te identificeren.

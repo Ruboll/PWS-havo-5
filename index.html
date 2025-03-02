@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfect Parts</title>
+    <script>
+      // Functie om de titel in te stellen op basis van de URL
+      function updatePageTitle() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let page = urlParams.get('page') || 'home';
+        
+        // Map van pagina's naar titels
+        const pageTitles = {
+          'home': "Home - De beste gaming PC samenstellen",
+          'FPE': "Frame Per Euro - Beste prijs/prestatie verhouding",
+          'bottleneck-calculator': "Bottleneck Calculator - Check je componenten",
+          'vragenlijst': "PC Advies - Vind jouw perfecte setup",
+          'FAQ': "Veelgestelde Vragen - Perfect Parts",
+          'about-us': "Over Ons - Perfect Parts Team",
+          'contact': "Contact - Neem contact met ons op",
+          '1080p': "1080p Benchmarks - Gaming Prestaties",
+          '1440p': "1440p Benchmarks - Gaming Prestaties", 
+          '4k': "4K Benchmarks - Gaming Prestaties"
+        };
+        
+        // Haal de juiste titel op basis van de pagina
+        let pageTitle = pageTitles[page] || (page.charAt(0).toUpperCase() + page.slice(1).replace(/-/g, ' '));
+        
+        // Stel de titel direct in
+        document.title = `Perfect Parts - ${pageTitle}`;
+        console.log(`Titel bijgewerkt naar: ${document.title}`);
+      }
+      
+      // Voer deze functie direct uit
+      updatePageTitle();
+      
+      // Voer deze functie ook uit na DOM laden en bij navigatie
+      document.addEventListener('DOMContentLoaded', updatePageTitle);
+      window.addEventListener('popstate', updatePageTitle);
+    </script>
     <script src="./assets/js/loadcomponents.js"></script>
     <script src="./assets/js/bottleneckcalc.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />

@@ -5,8 +5,8 @@
             <h1 class="hero-title">PERFECT PARTS</h1>
             <p class="hero-subtitle">Bouw je ideale gaming-pc met de juiste onderdelen</p>
             <div class="hero-buttons">
-                <a href="#" onclick="loadPageContent('pages/bottleneck-calculator.html')" class="hero-button primary">Bereken je Setup</a>
-                <a href="#" onclick="loadPageContent('pages/FPE.html')" class="hero-button secondary">Beste Prijs/Prestatie</a>
+                <a href="?page=bottleneck-calculator" onclick="event.preventDefault(); closeMenuAndLoadPage('pages/bottleneck-calculator.html', 'Bottleneck Calculator - Check je componenten')" class="hero-button primary">Bereken je Setup</a>
+                <a href="?page=FPE" onclick="event.preventDefault(); closeMenuAndLoadPage('pages/FPE.html', 'Frame Per Euro - Beste prijs/prestatie verhouding')" class="hero-button secondary">Beste Prijs/Prestatie</a>
             </div>
         </div>
     </div>
