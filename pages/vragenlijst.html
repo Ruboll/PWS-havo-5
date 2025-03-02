@@ -1,0 +1,61 @@
+
+    <div class="container-neck">
+    <h2>PC Advies Vragenlijst</h2>
+    <p>Vul de onderstaande vragenlijst in en ontvang een gepersonaliseerd advies voor jouw ideale gaming PC. We houden rekening met je budget, prestaties en voorkeuren.</p>
+    
+    <form id="vragenlijst">
+        <label for="budget">Wat is je budget?</label>
+        <select id="budget">
+            <option value="750">€750</option>
+            <option value="1000">€1000</option>
+            <option value="1250">€1250</option>
+            <option value="1500">€1500</option>
+            <option value="2000+">€2000 of meer</option>
+        </select>
+
+        <label for="aesthetics">Hoe belangrijk vind je het uiterlijk van je PC?</label>
+        <select id="aesthetics">
+            <option value="performance">Niet heel belangrijk, prestaties zijn belangrijker.</option>
+            <option value="neutral">Maakt mij niet uit.</option>
+            <option value="style">Ik heb graag een mooie PC.</option>
+        </select>
+
+        <label for="competitive">Speel je graag competitieve games, zoals Call Of Duty Warzone, Valorant & Fortnite?</label>
+        <select id="competitive">
+            <option value="yes">Ja, heel erg.</option>
+            <option value="sometimes">Soms.</option>
+            <option value="no">Nee, niet echt.</option>
+        </select>
+
+        <label for="storage">Hoeveel opslag zou je willen hebben in je PC?</label>
+        <select id="storage">
+            <option value="500GB">500 gigabyte</option>
+            <option value="1TB">1 terabyte</option>
+            <option value="2TB">2 terabyte</option>
+        </select>
+
+        <label for="ram">Hoeveel RAM heb je nodig?</label>
+        <select id="ram">
+            <option value="8GB">8GB</option>
+            <option value="16GB">16GB</option>
+            <option value="32GB">32GB</option>
+        </select>
+
+        <label for="resolution">Hoe belangrijk vind jij jouw resolutie?</label>
+        <select id="resolution">
+            <option value="4K">Ja, ik wil graag op 4K resolutie spelen.</option>
+            <option value="balanced">Ik hoef geen 4K, maar wil ook geen slechte resolutie.</option>
+            <option value="neutral">Het maakt mij niet uit.</option>
+        </select>
+
+        <button type="button">Verstuur</button>
+    </form>
+
+    <div id="resultaat-container">
+        <h3>Jouw PC Advies:</h3>
+        <p id="resultaat">Vul de vragen in en druk op verstuur om je advies te krijgen.</p>
+        <ul id="onderdelen-lijst"></ul>
+    </div>
+</div>
+
+
