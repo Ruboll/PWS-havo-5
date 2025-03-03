@@ -1,44 +1,59 @@
-/* Algemene instellingen */
+/* CSS Variables voor consistente styling en eenvoudig beheer */
+:root {
+  /* Kleuren */
+  --color-primary: #2b9bef;
+  --color-primary-light: #2b9bef33;
+  --color-primary-dark: #1a528e;
+  --color-secondary: #b3d5d8;
+  --color-accent: #9eb5ef;
+  
+  /* Achtergronden */
+  --color-bg-dark: #000000;
+  --color-bg-medium: #202020;
+  --color-bg-light: #333333;
+  --color-bg-overlay: rgba(63, 60, 60, 0.95);
+  
+  /* Tekst */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #f0f0f0;
+  --color-text-muted: #dddddd;
+  
+  /* Schaduwen */
+  --shadow-normal: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 5px 15px rgba(0, 0, 0, 0.3);
+  
+  /* Spacing */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  
+  /* Border radius */
+  --border-radius: 10px;
+  --border-radius-small: 4px;
+  
+  /* Transities */
+  --transition-normal: all 0.3s ease;
+  
+  /* Z-index layers */
+  --z-index-menu: 100;
+  --z-index-toggle: 101;
+}
+
+/* ===================================
+   Basis styling 
+   =================================== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #000; /* Zwarte achtergrond */
-  color: #fff; /* Witte tekstkleur */
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-primary);
   display: flex;
   flex-direction: column;
-  min-block-size: 100vh; /* Zorgt ervoor dat het body-element altijd minstens de hoogte van het scherm heeft */
+  min-block-size: 100vh;
 }
 
-/* Main content */
-.main-content {
-  flex: 1; /* Zorgt ervoor dat de contentruimte groeit en de footer naar beneden duwt */
-
-}
-
-img.logo-image {
-  inline-size: 500px; /* 500 */
-  block-size: auto; /* 300 */
-  display: block; /* 10 */
-  margin-block-end: 20px; /* 0 */
-}
-
-/* Footer */
-#footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #1a1a1a;
-  margin-block-start: auto; /* Zorgt ervoor dat de footer altijd onderaan komt */
-}
-
-/* Header */
-#header {
-  text-align: center;
-  background-color: #202020;
-  block-size: 8px;
-}
-
-h1{
-margin-block-end: 2rem;
+h1 {
+  margin-block-end: var(--spacing-large);
 }
 
 h2 {
@@ -46,10 +61,108 @@ h2 {
   font-size: 1.3rem;
 }
 
-/* Menu */
+h3 {
+  padding-block-end: 0;
+  padding-block-start: var(--spacing-large);
+  margin-block-start: 4px;
+  margin-block-end: 0;
+}
+
+p {
+  margin-block-end: var(--spacing-small);
+  margin-block-start: 0;
+  line-height: 1.4;
+  padding-block-end: 4px;
+  padding-block-start: 1px;
+}
+
+/* ===================================
+   Layout containers 
+   =================================== */
+.main-content {
+  flex: 1; /* Zorgt ervoor dat de contentruimte groeit en de footer naar beneden duwt */
+}
+
+#content-container {
+  max-inline-size: 1200px;
+  margin: auto;
+  padding: var(--spacing-large);
+  /* === Dirty fix voor homepage Hero-sectie === */
+  padding-block-start: 20px;
+  /* =========== */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-normal);
+}
+
+#content-neck-container {
+  max-inline-size: 500px;
+  margin: auto;
+  margin-block: var(--spacing-large) var(--spacing-large);
+  padding: var(--spacing-large);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-normal);
+}
+
+/* ===================================
+   Header, Footer & Logo 
+   =================================== */
+#header {
+  text-align: center;
+  background-color: var(--color-bg-medium);
+  block-size: 8px;
+}
+
+#footer {
+  text-align: center;
+  padding: var(--spacing-medium);
+  background-color: var(--color-bg-medium);
+  margin-block-start: auto;
+}
+
+img.logo-image {
+  inline-size: 500px;
+  block-size: auto;
+  display: block;
+  margin-block-end: var(--spacing-large);
+}
+
+/* ===================================
+   Navigation & Menu 
+   =================================== */
 #menu {
-  background-color: #333;
-  padding: 10px 20px;
+  background-color: var(--color-bg-light);
+  padding: var(--spacing-medium) var(--spacing-large);
+}
+
+#menu ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+#menu li {
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+#menu a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+#menu a:hover {
+  color: var(--color-primary);
+}
+
+/* Styling voor het actieve menu-item */
+#menu a.active {
+  color: var(--color-secondary);
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* Hamburger menu styling */
@@ -66,225 +179,52 @@ h2 {
   display: block;
   height: 3px;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--color-text-primary);
   border-radius: 3px;
 }
 
-h3 {
-padding-block-end: 0;
-padding-block-start: 20px;
-margin-block-start: 4px;
-margin-block-end: 0;
+/* Verberg het menu standaard voordat JavaScript is geladen */
+#mobile-menu {
+  visibility: hidden;
 }
 
-p {
-  margin-block-end: 10px;
-  margin-block-start: 0;
+/* Zodra JavaScript is geladen, wordt deze klasse toegevoegd */
+#mobile-menu.js-loaded {
+  visibility: visible;
 }
 
-#menu ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-}
-
-#menu li {
-  color: #fff;
-  font-size: 16px;
-}
-
-#menu a {
-  color: #fff;
-  text-decoration: none;
-}
-
-#menu a:hover {
-  color: #2b9bef;
-}
-
-/* Styling voor het actieve menu-item */
-#menu a.active {
-  color: #b3d5d8;
-  cursor:default;
-  text-decoration: underline;
-  text-underline-offset: 4px; /* Afstand tussen tekst en onderstreping */
-}
-
-/* Media query voor mobiele weergave */
-@media screen and (max-width: 768px) {
-  /* Logo kleiner maken op mobiele schermen */
-  .logo-image {
-    max-width: 300px; /* Kleinere maximale breedte voor het logo */
-    height: auto; /* Behoud de aspect ratio */
-  }
-  
-  .menu-toggle {
-    display: flex;
-    position: relative;
-    z-index: 101; /* Hoger dan het menu zelf */
-  }
-  
-  .navbar__container {
-    position: relative;
-  }
-  
-  /* Animatie voor het menu */
-  @keyframes slideIn {
-    form {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideOut {
-    form {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(100%);
-    }
-  }
-  
-  /* Verberg het menu standaard voordat JavaScript is geladen */
-  #mobile-menu {
-    visibility: hidden; /* Verberg het menu standaard */
-  }
-  
-  /* Zodra JavaScript is geladen, wordt deze klasse toegevoegd */
-  #mobile-menu.js-loaded {
-    visibility: visible;
-  }
-  
-  #menu ul.navbar__menu {
-    display: block; /* Altijd weergeven, maar buiten beeld */
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    inline-size: 80%; /* 80% van de schermbreedte */
-    background-color: rgba(63, 60, 60, 0.95);
-    padding: 60px 0 20px;
-    z-index: 100;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
-    transform: translateX(100%); /* Begin buiten beeld */
-    transition: transform 0.3s ease-in-out; /* Soepele overgang */
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #menu ul.navbar__menu.active {
-    transform: translateX(0); /* Schuif in beeld */
-    animation: slideIn 0.3s forwards;
-  }
-  
-  #menu li {
-    inline-size: 100%;
-    text-align: center;
-    padding: 15px 0;
-    margin: 5px 0;
-  }
-  
-  #menu li a {
-    font-size: 1.2rem;
-    display: block;
-    padding: 10px;
-  }
-  
-  #menu li:hover {
-    background-color: #444;
-  }
-  
-  /* Overlay voor de achtergrond wanneer menu open is */
-  .menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99;
-  }
-  
-  .menu-overlay.active {
-    display: block;
-  }
-}
-
+/* ===================================
+   Lijsten & Tabellen 
+   =================================== */
 #main-content ul {
   margin-inline-start: 15px;
-  margin-block-end: 10px;
+  margin-block-end: var(--spacing-medium);
   padding: 0;
   line-height: 1.4;
 }
 
-
 table {
   inline-size: 100%;
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
+
 th, td {
-   /* Verberg het menu standaard voordat JavaScript is geladen */
-   #mobile-menu {
-     visibility: hidden; /* Verberg het menu standaard */
-   }
-   
-   /* Zodra JavaScript is geladen, wordt deze klasse toegevoegd */
-   #mobile-menu.js-loaded {
-     visibility: visible;
-   } border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
+
 th {
-    background-color:  #2b9bef;
-}
-
-#content-container{
-    max-inline-size: 1200px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-
-#content-neck-container{
-  max-inline-size: 500px;
-  margin: auto;
-  margin-block: 40px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-}
-
-select, button {
-    inline-size: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-p {
-line-height: 1.4;
-padding-block-end: 4px;
-padding-block-start: 1px;
-
+  background-color: var(--color-primary);
 }
 
 /* Link list met SVG-chevron */
 .link-list, .check-list {
-  
-  list-style: none; /* Verwijdert standaard bullet points */
+  list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Houdt ruimte tussen items */
+  gap: 8px; 
 }
 
 ul.link-list, ul.check-list {
@@ -294,31 +234,22 @@ ul.link-list, ul.check-list {
 .link-list li, .check-list li {
   display: flex;
   align-items: center;
-  gap: 5px; /* Ruimte tussen chevron en link */
+  gap: 5px;
   padding-block: 0px;
 }
-
-  /* Alleen lijsten met de class 'check-list' krijgen checkmarks */
-
-.check-list li::before {
-  content: "✅"; /* Voegt de checkmark toe */
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
 
 .link-list li::before {
   content: "";
   display: inline-block;
-  inline-size: 1.4rem; /* Breedte van het chevron-icoon */
-  block-size: 1.4rem; /* Hoogte van het chevron-icoon */
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9.29 6.71a1 1 0 0 1 1.41 0L15.29 11.3a1 1 0 0 1 0 1.41L10.7 17.3a1 1 0 0 1-1.41-1.41L13.17 12l-4.58-4.59a1 1 0 0 1 0-1.41z'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .link-list a {
-  color: #fff; /* Witte tekst */
+  color: var(--color-text-primary);
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
@@ -326,43 +257,8 @@ ul.link-list, ul.check-list {
 }
 
 .link-list a:hover {
-  color: #2b9bef; /* Hover-kleur zoals in het menu */
+  color: var(--color-primary);
   text-decoration: underline;
-}
-
-/* Stijlen voor de homepage */
-.intro-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: #f0f0f0;
-}
-
-.feature-section {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background-color: rgba(50, 50, 50, 0.5);
-  border-left: 4px solid #2b9bef;
-}
-
-.feature-section h2 {
-  color: #ffffff;
-  margin-top: 0;
-}
-
-.cta-section {
-  margin: 2rem 0;
-  font-size: 1.1rem;
-}
-
-.quote-box {
-  margin: 2.5rem 0;
-  padding: 1.5rem;
-  background-color: rgba(255, 107, 0, 0.1);
-  font-style: italic;
-  text-align: center;
-  font-size: 1.2rem;
-  color: #2b9bef ;
 }
 
 /* Verbeterde stijl voor de check-list */
@@ -376,17 +272,89 @@ ul.link-list, ul.check-list {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #2b9bef;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
 .check-list li strong {
-  color: #9eb5ef;
+  color: var(--color-accent);
 }
 
+/* ===================================
+   Form Elements 
+   =================================== */
+select, button {
+  inline-size: 100%;
+  padding: var(--spacing-medium);
+  margin: var(--spacing-medium) 0;
+}
 
-/* Stijlen voor de homepage */
-/* Hero sectie */
+.form-button {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--border-radius-small);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition-normal);
+  text-decoration: none;
+  background-color: var(--color-primary);
+  color: var(--color-bg-dark);
+  box-shadow: none;
+  border: none;
+}
+
+.form-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-large);
+  background-color: var(--color-primary);
+}
+
+#onderdelen-lijst {
+  background-color: var(--color-primary);
+  display: block;
+}
+
+/* ===================================
+   Feature Sections
+   =================================== */
+.feature-section {
+  margin: var(--spacing-large) 0;
+  padding: 1.5rem;
+  background-color: rgba(50, 50, 50, 0.5);
+  border-left: 4px solid var(--color-primary);
+}
+
+.feature-section h2 {
+  color: var(--color-text-primary);
+  margin-top: 0;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-large);
+  color: var(--color-text-secondary);
+}
+
+.cta-section {
+  margin: var(--spacing-large) 0;
+  font-size: 1.1rem;
+}
+
+.quote-box {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background-color: rgba(255, 107, 0, 0.1);
+  font-style: italic;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
 .hero-section {
   position: relative;
   margin: -20px -20px 30px -20px;
@@ -408,7 +376,7 @@ ul.link-list, ul.check-list {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(0, 188, 212, 0.3), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(45deg, rgba(43, 155, 239, 0.3), rgba(0, 0, 0, 0.5));
   z-index: 1;
 }
 
@@ -416,13 +384,13 @@ ul.link-list, ul.check-list {
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 0 20px;
+  padding: 0 var(--spacing-large);
 }
 
 .hero-title {
   font-size: 3.5rem;
   margin-bottom: 15px;
-  color: #ffffff;
+  color: var(--color-text-primary);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
 }
@@ -430,54 +398,148 @@ ul.link-list, ul.check-list {
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: 30px;
-  color: #f0f0f0;
+  color: var(--color-text-secondary);
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.hero-buttons, .form-button {
+.hero-buttons {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-top: 30px;
 }
 
-.hero-button, .form-button {
+.hero-button {
   display: inline-block;
   padding: 12px 24px;
-  border-radius: 4px;
+  border-radius: var(--border-radius-small);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
+  transition: var(--transition-normal);
   text-decoration: none;
 }
 
-.hero-button.primary, .form-button {
-  background-color: #2b9bef;
-  color: #000;
+.hero-button.primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg-dark);
 }
 
 .hero-button.secondary {
   background-color: transparent;
-  color: #fff;
-  border: 2px solid #2b9bef;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-primary);
 }
 
-.hero-button:hover, .form-button:hover {
+.hero-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-large);
 }
 
-.hero-button.primary:hover, .form-button:hover {
-  background-color: #2b9bef;
+.hero-button.primary:hover {
+  background-color: var(--color-primary);
 }
 
 .hero-button.secondary:hover {
-  background-color: rgba(0, 188, 212, 0.1);
+  background-color: rgba(43, 155, 239, 0.1);
 }
 
-/* Responsieve aanpassingen voor de hero */
+/* ===================================
+   Media Queries
+   =================================== */
 @media screen and (max-width: 768px) {
+  /* Logo kleiner maken op mobiele schermen */
+  .logo-image {
+    max-width: 300px;
+    height: auto;
+  }
+  
+  .menu-toggle {
+    display: flex;
+    position: relative;
+    z-index: var(--z-index-toggle);
+  }
+  
+  .navbar__container {
+    position: relative;
+  }
+  
+  /* Animatie voor het menu */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  #menu ul.navbar__menu {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    inline-size: 80%;
+    background-color: var(--color-bg-overlay);
+    padding: 60px 0 20px;
+    z-index: var(--z-index-menu);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: var(--transition-normal);
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #menu ul.navbar__menu.active {
+    transform: translateX(0);
+    animation: slideIn 0.3s forwards;
+  }
+  
+  #menu li {
+    inline-size: 100%;
+    text-align: center;
+    padding: 15px 0;
+    margin: 5px 0;
+  }
+  
+  #menu li a {
+    font-size: 1.2rem;
+    display: block;
+    padding: var(--spacing-medium);
+  }
+  
+  #menu li:hover {
+    background-color: #444;
+  }
+  
+  /* Overlay voor de achtergrond wanneer menu open is */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+  }
+  
+  .menu-overlay.active {
+    display: block;
+  }
+  
+  /* Hero responsieve aanpassingen */
   .hero-section {
     height: 350px;
   }
@@ -496,23 +558,6 @@ ul.link-list, ul.check-list {
   }
   
   .hero-button {
-    width: 100%;
+    width: 90%;
   }
-}
-
-.intro-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: #f0f0f0;
-}
-
-.form-button{
-  box-shadow: none;
-  border: none;
-}
-
-#onderdelen-lijst{
-  background-color: #2b9bef;
-  display:block;
 }
