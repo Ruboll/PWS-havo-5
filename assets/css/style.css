@@ -21,6 +21,7 @@
   /* Schaduwen */
   --shadow-normal: 2px 2px 10px rgba(0, 0, 0, 0.1);
   --shadow-large: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --shadow-small: 0 2px 5px rgba(0, 0, 0, 0.1);
   
   /* Spacing */
   --spacing-small: 0.5rem;
@@ -311,7 +312,6 @@ select, button {
 }
 
 #onderdelen-lijst {
-  background-color: var(--color-primary);
   display: block;
 }
 
@@ -442,6 +442,107 @@ select, button {
 
 .hero-button.secondary:hover {
   background-color: rgba(43, 155, 239, 0.1);
+}
+
+/* ===================================
+   Vragenlijst resultaten
+   =================================== */
+.resultaat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--spacing-medium);
+}
+
+.resultaat-header h3 {
+  margin: 0;
+}
+
+.copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-small);
+  border: none;
+  background-color: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-small) 0;
+  transition: var(--transition-normal);
+  margin-block-start: var(--spacing-small);
+  margin-block-end: var(--spacing-medium);
+  /* Standaard verborgen, wordt via JS getoond */
+  display: none;
+  width: auto;
+}
+
+.copy-button:hover {
+  text-decoration: underline;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+.copy-button.copied {
+  color: var(--color-success, #28a745);
+  background-color: transparent;
+}
+
+/* Icoon container en animaties */
+.icon-container {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-copy, .icon-check {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Standaard is het vinkje verborgen */
+.icon-check {
+  opacity: 0;
+  transform: scale(0.5) rotate(-45deg);
+}
+
+/* Wanneer gekopieerd is, wissel de iconen */
+.copy-button.copied .icon-copy {
+  opacity: 0;
+  transform: scale(0.5) rotate(45deg);
+}
+
+.copy-button.copied .icon-check {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+
+.copy-button span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Responsive aanpassingen voor kleine schermen */
+@media screen and (max-width: 480px) {
+  .copy-button {
+    padding: var(--spacing-small);
+  }
+  
+  .copy-button span {
+    display: none; /* Verberg tekst op kleine schermen, alleen pictogram tonen */
+  }
 }
 
 /* ===================================

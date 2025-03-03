@@ -4,6 +4,11 @@ document.addEventListener("click", function (event) {
         console.log("Knop is geklikt! Advies wordt gegenereerd...");
         toonResultaat();
     }
+    
+    // Controleer of de kopieerknop of een van de kinderen (SVG, path) is geklikt
+    if (event.target.closest("#copy-button")) {
+        copyResults();
+    }
 });
 
 function toonResultaat() {
@@ -31,6 +36,7 @@ function toonResultaat() {
 
     let resultaatElement = document.getElementById("resultaat");
     let onderdelenLijst = document.getElementById("onderdelen-lijst");
+    let copyButton = document.getElementById("copy-button");
 
     if (!resultaatElement || !onderdelenLijst) {
         console.error("❌ ERROR: HTML-elementen voor het resultaat ontbreken!");
@@ -90,5 +96,77 @@ function toonResultaat() {
         onderdelenLijst.appendChild(li);
     });
 
+    // Toon de kopieerknop nu de resultaten zichtbaar zijn
+    if (copyButton) {
+        copyButton.style.display = "block";
+    }
+
     console.log("✅ Advies gegenereerd:", onderdelen);
+}
+
+function copyResults() {
+    const advies = document.getElementById("resultaat").innerText;
+    const onderdelenLijst = document.getElementById("onderdelen-lijst");
+    const copyButton = document.getElementById("copy-button");
+    
+    if (!onderdelenLijst || !copyButton) {
+        console.error("❌ ERROR: Kan de onderdelen niet kopiëren. HTML-elementen ontbreken!");
+        return;
+    }
+    
+    // Verzamel alle onderdelen in een string
+    let onderdelenText = "";
+    for (const li of onderdelenLijst.children) {
+        onderdelenText += "- " + li.innerText + "\n";
+    }
+    
+    // Combineer alles in één tekst
+    const copyText = `Perfect Parts - Jouw PC Advies\n\n${advies}\n\n${onderdelenText}`;
+    
+    try {
+        // Kopieer naar klembord
+        navigator.clipboard.writeText(copyText).then(() => {
+            // Feedback naar de gebruiker via CSS-klasse
+            copyButton.title = "Gekopieerd!";
+            copyButton.classList.add("copied");
+            
+            // Reset de knop na 2 seconden
+            setTimeout(() => {
+                copyButton.title = "Kopieer resultaten";
+                copyButton.classList.remove("copied");
+            }, 2000);
+            
+            console.log("✅ Resultaten gekopieerd naar klembord");
+        }).catch(err => {
+            console.error("❌ Kon niet naar klembord kopiëren:", err);
+        });
+    } catch (error) {
+        console.error("❌ Clipboardfunctie niet ondersteund:", error);
+        
+        // Fallback voor oudere browsers
+        fallbackCopy(copyText);
+    }
+}
+
+function fallbackCopy(text) {
+    // Creëer een tijdelijk textarea element
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";  // Voorkomt scroll
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        // Poging tot kopiëren
+        const successful = document.execCommand('copy');
+        const msg = successful ? '✅ Resultaten gekopieerd (fallback)' : '❌ Kopiëren mislukt';
+        console.log(msg);
+    } catch (err) {
+        console.error('❌ Fallback kopiëren mislukt:', err);
+    }
+    
+    // Verwijder de textarea
+    document.body.removeChild(textArea);
 }
