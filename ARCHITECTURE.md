@@ -193,7 +193,33 @@ Werking:
 
 De website gebruikt een moderne CSS-aanpak met:
 
-1. **Logische eigenschappen**: In plaats van traditionele directional properties (top, right, bottom, left) worden logische eigenschappen gebruikt (block-start, inline-end, etc.) voor betere internationalisatie.
+1. **CSS Custom Properties (Variables)**: Centraal beheerde variabelen voor consistente styling en eenvoudig onderhoud:
+   ```css
+   :root {
+     /* Kleuren */
+     --color-primary: #2b9bef;
+     --color-primary-light: #2b9bef33;
+;
+     --color-bg-dark: #000000;
+     --color-text-primary: #ffffff;
+     
+     /* Spacing */
+     --spacing-small: 0.5rem;
+     --spacing-medium: 1rem;
+     --spacing-large: 2rem;
+     
+     /* Andere variabelen */
+     --border-radius: 10px;
+     --transition-normal: all 0.3s ease;
+   }
+   ```
+
+   Deze variabelen worden gebruikt voor alle stijlregels, wat zorgt voor:
+   - Consistentie in kleurgebruik, spacing en effecten
+   - Eenvoudige thema-aanpassingen (alles wijzigen vanaf één locatie)
+   - Betere leesbaarheid door betekenisvolle namen
+
+2. **Logische eigenschappen**: In plaats van traditionele directional properties (top, right, bottom, left) worden logische eigenschappen gebruikt (block-start, inline-end, etc.) voor betere internationalisatie.
 
    Voorbeeld:
    ```css
@@ -206,24 +232,35 @@ De website gebruikt een moderne CSS-aanpak met:
    padding-inline-start: 10px;
    ```
 
-2. **Flexbox layout**: Voor responsieve en flexibele layouts die goed werken op verschillende schermformaten.
+3. **Modulaire CSS-structuur**: De CSS is georganiseerd in functionele secties:
+   - Basis styling (typografie, algemene elementen)
+   - Layout containers
+   - Header, footer en logo styling
+   - Navigatie en menu
+   - Lijsten en tabellen
+   - Formulierelementen
+   - Feature-secties
+   - Hero-sectie
+   - Media queries
 
-3. **Consistente kleurschema's**: Donker thema met accentkleuren voor een moderne gaming-esthetiek.
-   - Achtergrond: Zwart (#000)
-   - Tekst: Wit (#fff)
-   - Accentkleur: Lichtblauw (#00bcd4)
-   - Secundaire accentkleur: Paars (#9eb5ef)
-   - Secundaire achtergrond: Donkergrijs (#1a1a1a, #202020, #333)
+4. **Flexbox layout**: Voor responsieve en flexibele layouts die goed werken op verschillende schermformaten.
 
-4. **Content Containers**: Speciale containers voor verschillende soorten inhoud:
+5. **Consistente kleurschema's**: Donker thema met accentkleuren voor een moderne gaming-esthetiek, nu volledig beheerd via CSS variabelen:
+   - Achtergrond: var(--color-bg-dark) (#000000)
+   - Tekst: var(--color-text-primary) (#ffffff)
+   - Accentkleur: var(--color-primary) (#2b9bef)
+   - Secundaire accentkleur: var(--color-accent) (#9eb5ef)
+   - Overlay achtergrond: var(--color-bg-overlay) (rgba(63, 60, 60, 0.95))
+
+6. **Content Containers**: Speciale containers voor verschillende soorten inhoud:
    - `#content-container`: Algemene container voor pagina-inhoud
    - `.feature-section`: Container voor feature-lijsten met opvallende styling
    - `.quote-box`: Speciale container voor quotes
    - `.hero-section`: Opvallende header-sectie op de homepage
 
-5. **Styling voor lijsten**: Speciale styling voor checklists en linklijsten met SVG-chevrons.
+7. **Styling voor lijsten**: Speciale styling voor checklists en linklijsten met SVG-chevrons.
 
-6. **Animaties en Transities**: Soepele animaties voor het mobiele menu en interactieve elementen:
+8. **Animaties en Transities**: Soepele animaties voor het mobiele menu en interactieve elementen:
    ```css
    @keyframes slideIn {
      from { transform: translateX(100%); }
@@ -234,6 +271,11 @@ De website gebruikt een moderne CSS-aanpak met:
      from { transform: translateX(0); }
      to { transform: translateX(100%); }
    }
+   ```
+
+9. **Schaduwen en Effecten**: Consistente schaduweffecten via variabelen:
+   ```css
+   box-shadow: var(--shadow-normal);
    ```
 
 ## Interactieve Tools
