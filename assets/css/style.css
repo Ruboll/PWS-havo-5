@@ -124,7 +124,6 @@ img.logo-image {
   inline-size: 500px;
   block-size: auto;
   display: block;
-  margin-block-end: var(--spacing-large);
 }
 
 /* ===================================
